@@ -1,11 +1,11 @@
-# Firebase SDK for Cloud Functions Quickstart - HTTPS trigger
+# timein-chatbot
 
-This quickstart demonstrates using the **Firebase SDK for Cloud Functions** with an HTTPS trigger through building an endpoint returning the current time.
+This is a NodeJS chatbot that can be deployed to Firebase. It will reply with the local time for a given location/city.
 
 
 ## Introduction
 
-The function `date` returns the current server date. You can pass it a `format` URL Query parameter to format the date.
+The function `timein` returns the current server date.
 
 Further reading:
 
@@ -14,19 +14,7 @@ Further reading:
 
 ## Initial setup, build tools and dependencies
 
-### 1. Clone this repo
-
-Clone or download this repo and open the `quickstarts/time-server` directory.
-
-
-### 2. Create a Firebase project and configure the quickstart
-
-Create a Firebase Project on the [Firebase Console](https://console.firebase.google.com).
-
-Set up your Firebase project by running `firebase use --add`, select your Project ID and follow the instructions.
-
-
-### 3. Install the Firebase CLI and enable Functions on your Firebase CLI
+### 1. Install the Firebase CLI and enable Functions on your Firebase CLI
 
 You need to have installed the Firebase CLI. If you haven't run:
 
@@ -34,8 +22,17 @@ You need to have installed the Firebase CLI. If you haven't run:
 npm install -g firebase-tools
 ```
 
-> Doesn't work? You may need to [change npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
+### 2. Clone this repo
 
+Clone or download this repo and open the `functions` directory.
+
+### 3. Create a Firebase project and configure the quickstart
+
+Create a Firebase Project on the [Firebase Console](https://console.firebase.google.com).
+
+Set up your Firebase project by running `firebase use --add`, select your Project ID and follow the instructions.
+
+> Doesn't work? You may need to [change npm permissions](https://docs.npmjs.com/getting-started/fixing-npm-permissions).
 
 ## Deploy the app to prod
 
@@ -56,7 +53,7 @@ Deploy to Firebase using the following command:
 firebase deploy
 ```
 
-This deploys and activates the date Function.
+This deploys and activates the `timein` Function.
 
 > The first time you call `firebase deploy` on a new project with Functions will take longer than usual.
 
@@ -66,31 +63,8 @@ This deploys and activates the date Function.
 After deploying the function you can open the following URLs in your browser:
 
 ```
-https://us-central1-<project-id>.cloudfunctions.net/date
-
-https://us-central1-<project-id>.cloudfunctions.net/date?format=MMMM%20Do%20YYYY%2C%20h%3Amm%3Ass%20a
+https://us-central1-<project-id>.cloudfunctions.net/timein
 ```
-
-You can also send the format in the request body. For instance using cURL in the command line:
-
-```bash
-curl -H 'Content-Type: application/json' /
-     -d '{"format": "MMMM Do YYYY, h:mm:ss a"}' /
-     https://us-central1-<project-id>.cloudfunctions.net/date
-```
-Formatted dates should be displayed.
-
-We are responding with a 403 error in case of PUT requests:
-
-```bash
-curl -X PUT -d '{"format": "MMMM Do YYYY, h:mm:ss a"}' https://us-central1-<project-id>.cloudfunctions.net/date
-```
-
-
-## Contributing
-
-We'd love that you contribute to the project. Before doing so please read our [Contributor guide](../../CONTRIBUTING.md).
-
 
 ## License
 
